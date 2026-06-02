@@ -14,10 +14,20 @@ const errClass = computed(() => {
       : 'has-text-danger'
 })
 
+function double() {
+  let doubledBPM: number = Math.min(360, Math.max(bpmField.value * 2, 0))
+  bpmField.value = doubledBPM
+}
+
+function half() {
+  let halvedBPM: number = bpmField.value / 2
+  bpmField.value = halvedBPM >= 1 ? halvedBPM : 0
+}
+
 watch(
   bpmField,
   async (bpm) => {
-    const result = update(bpm)
+    const result = update(Math.min(360, Math.max(bpm, 0)))
     Object.assign(bpmCalc, result)
   },
   { immediate: true },
@@ -37,16 +47,16 @@ watch(
         <div class="label">Target BPM</div>
         <div class="field has-addons">
           <div class="control is-expanded">
-            <input class="input" type="text" placeholder="BPM" v-model="bpmField" />
+            <input class="input" type="text" placeholder="Enter a BPM" v-model="bpmField" />
           </div>
           <div class="control">
-            <button class="button">
+            <button class="button" @click="double">
               <span class="icon"><i class="fa-solid fa-xmark"></i></span
               ><span><i class="fa-solid fa-2"></i></span>
             </button>
           </div>
           <div class="control">
-            <button class="button is-info">
+            <button class="button is-info" @click="half">
               <span class="icon"><i class="fa-solid fa-divide"></i></span
               ><span><i class="fa-solid fa-2"></i></span>
             </button>
