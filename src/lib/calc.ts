@@ -42,7 +42,7 @@ function forwardInterp(val: number) {
 }
 
 /**
- *
+ * Calculates speed wheel value from BPM
  * @param bpm
  * @returns
  */
@@ -75,7 +75,7 @@ function getNear(bpm: number) {
 }
 
 /**
- * Calculates BPM wheel value
+ * Main BPM calculation function, exported to Vue app
  * @param {number} bpm
  */
 export function update(bpm: number): {
@@ -89,15 +89,6 @@ export function update(bpm: number): {
   const actualBpm = forwardInterp(val)
   const err = Math.round((actualBpm - bpm) * 100) / 100
 
-  const near = getNear(bpm)
-  // const pills = document.getElementById('nearPills')
-  // pills.innerHTML = near
-  //   .map(
-  //     ({ v, b, diff }) =>
-  //       `<span class="near-pill${diff === 0 ? ' exact' : ''}" onclick="setVal(${b})">${b} BPM → <strong>${v}</strong>${diff === 0 ? ' ✓' : ''}</span>`,
-  //   )
-  //   .join('')
-
   const methodText =
     method === 'exact'
       ? 'This is a known calibration point — no interpolation needed.'
@@ -110,17 +101,3 @@ export function update(bpm: number): {
     methodText: methodText,
   }
 }
-
-// document.getElementById('bpmInput').addEventListener('input', function () {
-//   const v = parseFloat(this.value)
-//   if (!isNaN(v)) {
-//     document.getElementById('bpmSlider').value = Math.min(360, Math.max(0, v))
-//     update(v)
-//   }
-// })
-
-// document.getElementById('bpmSlider').addEventListener('input', function () {
-//   const v = parseInt(this.value)
-//   document.getElementById('bpmInput').value = v
-//   update(v)
-// })
