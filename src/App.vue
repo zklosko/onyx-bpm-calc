@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { ref, reactive, watch, computed } from 'vue'
-import { update } from './lib/calc.ts'
+import { ref, watch, computed, reactive } from 'vue'
+import { update } from './lib/calc'
 import Footer from './lib/Footer.vue'
 
 const bpmField = ref(120)
-const bpmCalc = reactive({ val: 0, actualBpm: 0, err: 0, methodText: '' }) // don't know if I need to do this
+const bpmCalc = reactive({ val: 0, actualBpm: 0, err: 0, methodText: '' })
 
 const errClass = computed(() => {
   return Math.abs(bpmCalc.err) < 0.5
@@ -14,20 +14,22 @@ const errClass = computed(() => {
       : 'has-text-danger'
 })
 
+function clampBPM (bpm: number): number {
+  return Math.min(360, Math.max(bpm, 0))
+}
+
 function double() {
-  let doubledBPM: number = Math.min(360, Math.max(bpmField.value * 2, 0))
-  bpmField.value = doubledBPM
+  bpmField.value = clampBPM(bpmField.value * 2)
 }
 
 function half() {
-  let halvedBPM: number = bpmField.value / 2
-  bpmField.value = halvedBPM >= 1 ? halvedBPM : 0
+  bpmField.value = clampBPM(bpmField.value / 2)
 }
 
 watch(
   bpmField,
-  async (bpm) => {
-    const result = update(Math.min(360, Math.max(bpm, 0)))
+  (bpm: number) => {
+    const result = update(clampBPM(bpm))
     Object.assign(bpmCalc, result)
   },
   { immediate: true },
@@ -47,16 +49,16 @@ watch(
         <div class="label">Target BPM</div>
         <div class="field has-addons">
           <div class="control is-expanded">
-            <input class="input" type="text" placeholder="Enter a BPM" v-model="bpmField" />
+            <input class="input" type="number" min="0" max="360" placeholder="Enter a BPM" v-model.number="bpmField" />
           </div>
           <div class="control">
-            <button class="button" @click="double">
+            <button class="button" @click="double" aria-label="Double BPM">
               <span class="icon"><i class="fa-solid fa-xmark"></i></span
               ><span><i class="fa-solid fa-2"></i></span>
             </button>
           </div>
           <div class="control">
-            <button class="button is-info" @click="half">
+            <button class="button is-info" @click="half" aria-label="Half BPM">
               <span class="icon"><i class="fa-solid fa-divide"></i></span
               ><span><i class="fa-solid fa-2"></i></span>
             </button>
@@ -100,7 +102,3 @@ watch(
     <Footer />
   </div>
 </template>
-
-<style scoped>
-@import 'https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css';
-</style>

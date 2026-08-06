@@ -1,6 +1,6 @@
 {
   "name": "onyx-bpm-calc",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "private": true,
   "type": "module",
   "scripts": {
@@ -12,6 +12,7 @@
     "format": "prettier --write --experimental-cli src/"
   },
   "dependencies": {
+    "bulma": "^1.0.4",
     "vue": "^3.5.32"
   },
   "devDependencies": {
