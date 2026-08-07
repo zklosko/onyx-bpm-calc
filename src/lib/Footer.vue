@@ -8,10 +8,19 @@
 </template>
 
 <style scoped>
+a {
+    color: black;
+    font-weight: 700;
+}
 .footer {
   padding: 1rem 0.5rem 1rem;
 }
 .content p:not(:last-child) {
   margin-bottom: 0;
+}
+@media (prefers-color-scheme: dark) {
+  a{
+    color: white;
+  }
 }
 </style>
