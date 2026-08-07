@@ -1,0 +1,13 @@
+@import 'bulma/css/bulma.css';
+
+:root {
+  --bulma-primary-h: 39deg;
+  --bulma-primary-l: 56%;
+  --bulma-link-h: 39deg;
+  --bulma-link-l: 56%;
+  --bulma-info-h: 33deg;
+  --bulma-info-l: 56%;
+
+    --bulma-family-primary: -apple-system, 'Inter', sans-serif;
+    --bulma-family-code: 'JetBrains Mono', 'SF Mono', Consolas, monospace;
+}

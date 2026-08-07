@@ -38,7 +38,7 @@ watch(
 
 <template>
   <div class="container">
-    <section class="hero is-small is-primary">
+    <section class="hero is-small is-info">
       <div class="hero-body">
         <p class="title">Onyx speed wheel calculator</p>
         <p class="subtitle">Enter a target BPM to get the speed value to enter</p>
@@ -58,7 +58,7 @@ watch(
             </button>
           </div>
           <div class="control">
-            <button class="button is-info" @click="half" aria-label="Half BPM">
+            <button class="button is-primary" @click="half" aria-label="Half BPM">
               <span class="icon"><i class="fa-solid fa-divide"></i></span
               ><span><i class="fa-solid fa-2"></i></span>
             </button>
@@ -102,3 +102,9 @@ watch(
     <Footer />
   </div>
 </template>
+
+<style scoped>
+.box {
+  box-shadow: none;
+}
+</style>
