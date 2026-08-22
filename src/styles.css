@@ -4,10 +4,27 @@
   --bulma-primary-h: 39deg;
   --bulma-primary-l: 56%;
   --bulma-link-h: 39deg;
+  --bulma-link-s: 68%;
   --bulma-link-l: 56%;
   --bulma-info-h: 33deg;
   --bulma-info-l: 56%;
 
-    --bulma-family-primary: -apple-system, 'Inter', sans-serif;
-    --bulma-family-code: 'JetBrains Mono', 'SF Mono', Consolas, monospace;
+  --bulma-family-primary: 'Inter', -apple-system, sans-serif;
+  --bulma-family-code: 'JetBrains Mono', 'SF Mono', Consolas, monospace;
+
+  --bulma-radius: 8px;
+  --bulma-radius-large: 14px;
+  --bulma-body-background-color: #f6f5f3;
+}
+
+body {
+  min-height: 100vh;
+  background: radial-gradient(circle at top, rgba(241, 158, 46, 0.06), transparent 55%), var(--bulma-body-background-color);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bulma-body-background-color: #14161a;
+    --bulma-primary-s: 68%;
+  }
 }

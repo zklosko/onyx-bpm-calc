@@ -9,18 +9,32 @@
 
 <style scoped>
 a {
-    color: black;
-    font-weight: 700;
+    color: inherit;
+    font-weight: 600;
+    text-decoration: underline;
+    text-decoration-color: vat(--bulma-border-weak, #ddd);
+    text-underline-offset: 2px;
+}
+a:hover {
+  color: var(--bulma-primary);
 }
 .footer {
-  padding: 1rem 0.5rem 1rem;
+  background: transparent;
+  padding: 2rem 0.5rem 1rem;
+}
+.content {
+  font-size: 0.8rem;
+  color: var(--bulma-grey);
 }
 .content p:not(:last-child) {
-  margin-bottom: 0;
+  margin-bottom: 0.15rem;
 }
 @media (prefers-color-scheme: dark) {
   a{
     color: white;
+  }
+  a:hover {
+    color: var(--bulma-primary);
   }
 }
 </style>
